@@ -1,0 +1,10 @@
+{% extends 'partials/application.html' %}
+
+{% block content %}
+    <h1>Welcome</h1>
+    <form method="post" class="ui form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="ui primary button">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'partials/application.html' %}
+
+{% block content %}
+<h1>Posts</h1>
+<a href="{% url 'new_post' %}" class="ui primary button">Create Post</a>
+<hr>
+<table class="ui table">
+    <tr>
+        <th>Post Title</th>
+        <th colspan="3">Actions</th>
+    </tr>
+    
+    {% for post in posts %}
+    <tr>
+        <td>{{post.title}}</td>
+        <td><a href="{{post.id}}" class="ui button primary">View</a></td>
+        <td><a href="{{post.id}}/edit/" class="ui button secondary">Edit</a></td>
+        <td>
+            <form action="/posts/{{post.id}}/delete/" method="post">
+                {% csrf_token %}
+                <button type="submit" class="ui button negative">Delete</button>
+            </form>
+        </td>
+    </tr>           
+    {% endfor %}
+</table>
+{% endblock %}
